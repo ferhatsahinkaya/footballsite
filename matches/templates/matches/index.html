@@ -9,7 +9,7 @@
             <td><select id="league" name="league">
                 <option value="All">All Leagues</option>
                 {% for league in leagues %}
-                <option value="{{ league }}">{{ league }}</option>
+                <option value="{{ league.league }}">{{ league.caption }}</option>
                 {% endfor %}
             </select></td>
         </tr>
