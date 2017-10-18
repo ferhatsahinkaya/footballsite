@@ -1,0 +1,1 @@
+web: gunicorn footballsite.wsgi --pythonpath footballsite --log-file -
