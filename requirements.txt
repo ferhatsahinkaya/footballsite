@@ -1,6 +1,8 @@
 certifi==2017.7.27.1
 chardet==3.0.4
+Django==1.11.6
 flake8==3.4.1
+gunicorn==19.7.1
 idna==2.6
 -e git+https://github.com/ferhatsahinkaya/matchfinder.git@59f89c05d1a59229eed47d8ee7d299536d2a0329#egg=matchfinder
 mccabe==0.6.1
@@ -8,6 +10,7 @@ pew==1.1.0
 pipenv==8.2.7
 pycodestyle==2.3.1
 pyflakes==1.5.0
+pytz==2017.2
 requests==2.18.4
 urllib3==1.22
 virtualenv==15.1.0

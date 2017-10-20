@@ -7,7 +7,7 @@ name = "pypi"
 
 [packages]
 
-Django = "*"
+django = "*"
 requests = "==2.18.4"
 gunicorn = "*"
 certifi = "==2017.7.27.1"
