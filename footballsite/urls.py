@@ -20,3 +20,6 @@ urlpatterns = [
     url(r'', include('matches.urls')),
     url(r'^admin/', admin.site.urls),
 ]
+
+handler404 = 'dh5bp.views.page_not_found'
+handler500 = 'dh5bp.views.server_error'
