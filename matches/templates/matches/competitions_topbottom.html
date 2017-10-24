@@ -1,3 +1,6 @@
+{% extends 'dh5bp/base.html' %}
+{% block title %}Competitions For Top/Bottom Query{% endblock %}
+{% block content %}
 {% autoescape on %}
 
 {% for competition in competitions %}
@@ -28,3 +31,4 @@
 {% endfor %}
 
 {% endautoescape %}
+{% endblock %}
