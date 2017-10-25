@@ -1,6 +1,7 @@
 certifi==2017.7.27.1
 chardet==3.0.4
 Django==1.11.6
+django-html5-boilerplate==1.0.8
 flake8==3.4.1
 gunicorn==19.7.1
 idna==2.6
