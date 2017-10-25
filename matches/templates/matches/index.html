@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" href="static/css/skeleton.css">
 
+<br>
 <div class="container">
     <form action="competitions" method="get">
         <div class="row">
@@ -23,10 +24,10 @@
         </div>
         <div class="row">
             <div class="six columns">
-                <label for="filter_type">Filter Type</label>
+                <label for="filtertype">Filter Type</label>
             </div>
             <div class="six columns">
-                <select id="filter_type" name="filter_type">
+                <select id="filtertype" name="filtertype" onchange="refreshFields()">
                     {% for filter in filters %}
                     <option value="{{ filter.type }}">{{ filter.type|capfirst }}</option>
                     {% endfor %}
@@ -41,7 +42,7 @@
                 <input id="percent" name="percent" type="number" min="1" max="100">
             </div>
         </div>
-        <div class="row">
+        <div id="divnumberofgoals" class="row">
             <div class="six columns">
                 <label for="numberofgoals">Number of Goals</label>
             </div>
@@ -49,7 +50,7 @@
                 <input id="numberofgoals" name="numberofgoals" type="number" min="0">
             </div>
         </div>
-        <div class="row">
+        <div id="divhalffulltime" class="row">
             <div class="six columns">
                 <label for="halffulltime">Match Result At</label>
             </div>
@@ -60,7 +61,7 @@
                 </select>
             </div>
         </div>
-        <div class="row">
+        <div id="divhomeaway" class="row">
             <div class="six columns">
                 <label for="homeaway">Home Away</label>
             </div>
@@ -68,11 +69,34 @@
                 <input type="checkbox" id="homeaway" name="homeaway">
             </div>
         </div>
+	<br>
         <div class="row">
             <input type="submit">
         </div>
     </form>
 </div>
 
+<script type="text/javascript">
+function refreshFields() {
+    var filterTypeOption = document.getElementById("filtertype");
+    var selectedFilterType = filterTypeOption.options[filterTypeOption.selectedIndex].value;
+
+    var filters = JSON.parse("{{ filters | safe | escapejs }}".replace(/'/g, '\"'));
+    var selectedFilter = $.grep(filters, function(f){ return f.type == selectedFilterType; })[0];
+
+    var allFields = ['numberofgoals', 'halffulltime', 'homeaway'];
+    for(var fieldIndex in allFields) {
+        document.getElementById('div' + allFields[fieldIndex]).style.display = 'none';
+        document.getElementById(allFields[fieldIndex]).disabled = true;
+    }    
+    
+    for(var fieldIndex in selectedFilter.fields) {
+	document.getElementById('div' + selectedFilter.fields[fieldIndex]).style.display = 'block';
+	document.getElementById(selectedFilter.fields[fieldIndex]).disabled = false;
+    }
+}
+</script>
+
 {% endautoescape %}
 {% endblock %}
+

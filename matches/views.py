@@ -15,14 +15,14 @@ def index(request):
     context = {
         'leagues': competitions,
         'filters': [
-            {'type': 'topbottom'},
-            {'type': 'underover'}
+            {'type': 'topbottom', 'fields': []},
+            {'type': 'underover', 'fields': ['numberofgoals', 'homeaway', 'halffulltime']}
         ]}
     return render(request, 'matches/index.html', context)
 
 
 def find_competitions(request):
-    filter_type = request.GET['filter_type']
+    filter_type = request.GET['filtertype']
     if filter_type == 'topbottom':
         filter = {'type': filter_type, 'percent': int(request.GET['percent'])}
     else:
