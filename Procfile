@@ -1,1 +1,1 @@
-web: python my_django_app/manage.py collectstatic --noinput; gunicorn footballsite.wsgi --log-file -
+web: python footballsite/manage.py collectstatic --noinput; gunicorn footballsite.wsgi --log-file -
