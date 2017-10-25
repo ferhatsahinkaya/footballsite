@@ -1,52 +1,78 @@
 {% extends 'dh5bp/base.html' %}
 {% block title %}Football Site{% endblock %}
+{% load staticfiles %}
 {% block content %}
 {% autoescape on %}
 
-<h1>Select Filter</h1>
+<link rel="stylesheet" href="static/css/skeleton.css">
 
-<form action="competitions" method="get">
-    <table>
-        <tr>
-            <td><b><label for="league">League</label></b></td>
-            <td><select id="league" name="league">
-                <option value="All">All Leagues</option>
-                {% for league in leagues %}
-                <option value="{{ league.league }}">{{ league.caption }}</option>
-                {% endfor %}
-            </select></td>
-        </tr>
-        <tr>
-            <td><b><label for="filter_type">Filter Type</label></b></td>
-            <td><select id="filter_type" name="filter_type">
-                {% for filter in filters %}
-                <option value="{{ filter.type }}">{{ filter.type|capfirst }}</option>
-                {% endfor %}
-            </select></td>
-        </tr>
-        <tr>
-            <td><b><label for="percent">Percent</label></b></td>
-            <td><input id="percent" name="percent" type="number" min="1" max="100"></td>
-        </tr>
-        <tr>
-            <td><b><label for="numberofgoals">Number of Goals</label></b></td>
-            <td><input id="numberofgoals" name="numberofgoals" type="number" min="1" max="9"></td>
-        </tr>
-        <tr>
-            <td><b><label for="homeaway">Home Away</label></b></td>
-            <td><input type="checkbox" id="homeaway" name="homeaway"></td>
-        </tr>
-        <tr>
-            <td><input type="radio" id="halftime" name="halffulltime" value="halftime"><label for="halftime">Half
-                Time</label></td>
-            <td><input type="radio" id="fulltime" name="halffulltime" value="fulltime" checked><label for="fulltime">Full
-                Time</label></td>
-        </tr>
-        <tr>
-            <td><input type="submit"></td>
-        </tr>
-    </table>
-</form>
+<div class="container">
+    <form action="competitions" method="get">
+        <div class="row">
+            <div class="six columns">
+                <label for="league">League</label>
+            </div>
+            <div class="six columns">
+                <select id="league" name="league">
+                    <option value="All">All Leagues</option>
+                    {% for league in leagues %}
+                    <option value="{{ league.league }}">{{ league.caption }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                <label for="filter_type">Filter Type</label>
+            </div>
+            <div class="six columns">
+                <select id="filter_type" name="filter_type">
+                    {% for filter in filters %}
+                    <option value="{{ filter.type }}">{{ filter.type|capfirst }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                <label for="percent">Percent</label>
+            </div>
+            <div class="six columns">
+                <input id="percent" name="percent" type="number" min="1" max="100">
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                <label for="numberofgoals">Number of Goals</label>
+            </div>
+            <div class="six columns">
+                <input id="numberofgoals" name="numberofgoals" type="number" min="0">
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                <label for="halffulltime">Match Result At</label>
+            </div>
+            <div class="six columns">
+                <select id="halffulltime" name="halffulltime">
+                    <option value="fulltime">Full Time</option>
+                    <option value="halftime">Half Time</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                <label for="homeaway">Home Away</label>
+            </div>
+            <div class="six columns">
+                <input type="checkbox" id="homeaway" name="homeaway">
+            </div>
+        </div>
+        <div class="row">
+            <input type="submit">
+        </div>
+    </form>
+</div>
 
 {% endautoescape %}
 {% endblock %}
