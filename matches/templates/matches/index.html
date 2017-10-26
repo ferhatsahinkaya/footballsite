@@ -1,10 +1,12 @@
 {% extends 'dh5bp/base.html' %}
 {% block title %}Football Site{% endblock %}
-{% load staticfiles %}
+{% load static from staticfiles %}
 {% block content %}
 {% autoescape on %}
 
 <link rel="stylesheet" href="static/css/skeleton.css">
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 
 <br>
 <div class="container">
@@ -77,23 +79,10 @@
 </div>
 
 <script type="text/javascript">
+refreshFields();
+
 function refreshFields() {
-    var filterTypeOption = document.getElementById("filtertype");
-    var selectedFilterType = filterTypeOption.options[filterTypeOption.selectedIndex].value;
-
-    var filters = JSON.parse("{{ filters | safe | escapejs }}".replace(/'/g, '\"'));
-    var selectedFilter = $.grep(filters, function(f){ return f.type == selectedFilterType; })[0];
-
-    var allFields = ['numberofgoals', 'halffulltime', 'homeaway'];
-    for(var fieldIndex in allFields) {
-        document.getElementById('div' + allFields[fieldIndex]).style.display = 'none';
-        document.getElementById(allFields[fieldIndex]).disabled = true;
-    }    
-    
-    for(var fieldIndex in selectedFilter.fields) {
-	document.getElementById('div' + selectedFilter.fields[fieldIndex]).style.display = 'block';
-	document.getElementById(selectedFilter.fields[fieldIndex]).disabled = false;
-    }
+	refreshDocument(document, "{{ filters | safe | escapejs }}".replace(/'/g, '\"'));
 }
 </script>
 

@@ -1,20 +1,20 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fd67f926b926a3303057ca2daabb7dde41693146f11a5756f2da2657358c4637"
+            "sha256": "26cdd7554b7a725c8ab0c082aff12ef93fdf30710b4ba032a46c99e73b6ed257"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
-            "implementation_version": "3.6.1",
+            "implementation_version": "3.6.3",
             "os_name": "posix",
             "platform_machine": "x86_64",
             "platform_python_implementation": "CPython",
-            "platform_release": "16.7.0",
-            "platform_system": "Darwin",
-            "platform_version": "Darwin Kernel Version 16.7.0: Thu Jun 15 17:36:27 PDT 2017; root:xnu-3789.70.16~2/RELEASE_X86_64",
-            "python_full_version": "3.6.1",
+            "platform_release": "4.10.0-28-generic",
+            "platform_system": "Linux",
+            "platform_version": "#32~16.04.2-Ubuntu SMP Thu Jul 20 10:19:48 UTC 2017",
+            "python_full_version": "3.6.3",
             "python_version": "3.6",
-            "sys_platform": "darwin"
+            "sys_platform": "linux"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -57,6 +57,13 @@
                 "sha256:a8306475f748141cc7c5336394c55cd2601f8a94f8bae3ba99d6fa5c44e973ee"
             ],
             "version": "==1.0.8"
+        },
+        "django-jquery": {
+            "hashes": [
+                "sha256:e7e2ac14234bac26be937e448d94efd6d37ee2f3cdbaa2def3c8e74c2afb2b9a",
+                "sha256:414ac1083708ac71cc771612e7287702c939d06cd357fd53bb1271a4f6255115"
+            ],
+            "version": "==3.1.0"
         },
         "flake8": {
             "hashes": [

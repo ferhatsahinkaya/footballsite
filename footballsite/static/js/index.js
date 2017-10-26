@@ -1,14 +1,15 @@
-function refreshFields() {
+var optionalFields = ['numberofgoals', 'halffulltime', 'homeaway'];
+
+function refreshDocument(document, filters) {
     var filterTypeOption = document.getElementById("filtertype");
     var selectedFilterType = filterTypeOption.options[filterTypeOption.selectedIndex].value;
 
-    var filters = JSON.parse("{{ filters | safe | escapejs }}".replace(/'/g, '\"'));
+    var filters = JSON.parse(filters);
     var selectedFilter = $.grep(filters, function(f){ return f.type == selectedFilterType; })[0];
 
-    var allFields = ['numberofgoals', 'halffulltime', 'homeaway'];
-    for(var fieldIndex in allFields) {
-        document.getElementById('div' + allFields[fieldIndex]).style.display = 'none';
-        document.getElementById(allFields[fieldIndex]).disabled = true;
+    for(var fieldIndex in optionalFields) {
+        document.getElementById('div' + optionalFields[fieldIndex]).style.display = 'none';
+        document.getElementById(optionalFields[fieldIndex]).disabled = true;
     }    
     
     for(var fieldIndex in selectedFilter.fields) {
