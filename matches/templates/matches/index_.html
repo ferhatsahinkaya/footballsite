@@ -6,7 +6,6 @@
 
 <link rel="stylesheet" href="static/css/skeleton.css">
 <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/reconnecting-websocket.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 
 <br>
@@ -78,6 +77,14 @@
         </div>
     </form>
 </div>
+
+<script type="text/javascript">
+refreshFields();
+
+function refreshFields() {
+	refreshDocument(document, "{{ filters | safe | escapejs }}".replace(/'/g, '\"'));
+}
+</script>
 
 {% endautoescape %}
 {% endblock content %}

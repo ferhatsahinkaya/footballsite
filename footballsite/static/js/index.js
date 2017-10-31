@@ -1,19 +1,33 @@
-var optionalFields = ['numberofgoals', 'halffulltime', 'homeaway'];
-
-function refreshDocument(document, filters) {
-    var filterTypeOption = document.getElementById("filtertype");
-    var selectedFilterType = filterTypeOption.options[filterTypeOption.selectedIndex].value;
-
-    var filters = JSON.parse(filters);
-    var selectedFilter = $.grep(filters, function(f){ return f.type == selectedFilterType; })[0];
-
-    for(var fieldIndex in optionalFields) {
-        document.getElementById('div' + optionalFields[fieldIndex]).style.display = 'none';
-        document.getElementById(optionalFields[fieldIndex]).disabled = true;
-    }    
+$(function() {
+    // When we're using HTTPS, use WSS too.
+    var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+    var chatsock = new ReconnectingWebSocket(ws_scheme + '://' + window.location.host + "/chat" + window.location.pathname);
     
-    for(var fieldIndex in selectedFilter.fields) {
-	document.getElementById('div' + selectedFilter.fields[fieldIndex]).style.display = 'block';
-	document.getElementById(selectedFilter.fields[fieldIndex]).disabled = false;
-    }
-}
+    chatsock.onmessage = function(message) {
+        var data = JSON.parse(message.data);
+        var chat = $("#chat")
+        var ele = $('<tr></tr>')
+
+        ele.append(
+            $("<td></td>").text(data.timestamp)
+        )
+        ele.append(
+            $("<td></td>").text(data.handle)
+        )
+        ele.append(
+            $("<td></td>").text(data.message)
+        )
+        
+        chat.append(ele)
+    };
+
+    $("#competitions").on("submit", function(event) {
+        var message = {
+            handle: $('#handle').val(),
+            message: $('#message').val(),
+        }
+        chatsock.send(JSON.stringify(message));
+        $("#message").val('').focus();
+        return false;
+    });
+});
