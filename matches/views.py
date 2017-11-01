@@ -21,15 +21,21 @@ def index(request):
     return render(request, 'matches/index.html', context)
 
 
+def get_competitions(request):
+    return render(request, 'matches/competitions.html', {'competitions': []})
+
 def find_competitions(request):
     filter_type = request.GET['filtertype']
     if filter_type == 'topbottom':
-        filter = {'type': filter_type, 'percent': int(request.GET['percent'])}
+        filter = {'type': filter_type, 
+                  'percent': int(request.GET['percent']), 
+                  'league': request.GET['league']}
     else:
         filter = {'type': filter_type, 'percent': int(request.GET['percent']),
                   'numberofgoals': int(request.GET['numberofgoals']),
                   'homeaway': 'homeaway' in request.GET and request.GET['homeaway'] == 'on',
-                  'halftime': request.GET['halffulltime'] == 'halftime'}
+                  'halftime': request.GET['halffulltime'] == 'halftime',
+                  'league': request.GET['league']}
 
     selected_competitions = [competition for competition in competitions if
                              competition['league'] in request.GET['league']] \
@@ -40,5 +46,3 @@ def find_competitions(request):
 
     return render(request, 'matches/' + pages[filter_type], context)
 
-def get_competitions(request):
-    return render(request, 'matches/competitions.html', {'competitions': []})

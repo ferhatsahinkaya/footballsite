@@ -3,19 +3,22 @@ from channels.sessions import channel_session
 
 @channel_session
 def ws_connect(message):
-    prefix, label = message['path'].strip('/').split('/')
-    Group('league-' + label).add(message.reply_channel)
-    message.channel_session['result'] = 'league-' + label
+#    prefix, label = message['path'].strip('/').split('/')
+#    Group('league-' + label).add(message.reply_channel)
+#    message.channel_session['result'] = 'league-' + label
+     Group('result').add(message.reply_channel)
+     message.channel_session['result'] = 'test'
 
 @channel_session
 def ws_receive(message):
     label = message.channel_session['result']
-    publish_competitions(message)
+    Group('result').send({'key': 'value'})
+    #publish_competitions(message)
 
 @channel_session
 def ws_disconnect(message):
-    label = message.channel_session['result']
-    Group('league-'+label).discard(message.reply_channel)
+#    label = message.channel_session['result']
+    Group('result').discard(message.reply_channel)
 
 
 def publish_competitions(message):
