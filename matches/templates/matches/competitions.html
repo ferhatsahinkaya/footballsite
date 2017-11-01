@@ -1,0 +1,40 @@
+{% extends 'dh5bp/base.html' %}
+{% block title %}Competitions{% endblock title%}
+{% load static from staticfiles %}
+{% block content %}
+{% autoescape on %}
+
+<link rel="stylesheet" href="static/css/skeleton.css">
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/reconnecting-websocket.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+
+<br>
+<div class="container">
+    {% for competition in competitions %}
+
+    <h3>{{ competition.name }}</h3>
+    <table class="u-full-width">
+        <thead>
+        <tr>
+            <th>Time</th>
+            <th>Home Team</th>
+            <th>Away Team</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for match in competition.matches %}
+        <tr>
+            <td>{{ match.datetime }}</td>
+            <td>{{ match.homeTeam }} ({{ match.homeTeamStanding }})</td>
+            <td>{{ match.awayTeam }} ({{ match.awayTeamStanding }})</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endfor %}
+</div>
+
+{% endautoescape %}
+{% endblock content %}

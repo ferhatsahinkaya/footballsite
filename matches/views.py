@@ -39,3 +39,6 @@ def find_competitions(request):
     context = {'competitions': result}
 
     return render(request, 'matches/' + pages[filter_type], context)
+
+def get_competitions(request):
+    return render(request, 'matches/competitions.html', {'competitions': []})
