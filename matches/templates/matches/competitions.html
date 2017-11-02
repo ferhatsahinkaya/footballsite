@@ -8,53 +8,18 @@
 
 <br>
 <div class="container">
-    <form id="competitions">
-        <div class="row">
-            <div class="six columns">
-                <label for="league">League</label>
-            </div>
-            <div class="six columns">
-                <select id="league" name="league">
-                    <option value="All">All Leagues</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <input type="submit">
-        </div>
-    </form>
-    
-    <script type="text/javascript" src="{% static 'js/competitions.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/reconnecting-websocket.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/competitions.js' %}"></script>
 </div>
 
-<!--
-<div class="container">
-    {% for competition in competitions %}
+<script type="text/javascript">
+    filterCompetitions();
 
-    <h3>{{ competition.name }}</h3>
-<!--    <table class="u-full-width">
-        <thead>
-        <tr>
-            <th>Time</th>
-            <th>Home Team</th>
-            <th>Away Team</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for match in competition.matches %}
-        <tr>
-            <td>{{ match.datetime }}</td>
-            <td>{{ match.homeTeam }} ({{ match.homeTeamStanding }})</td>
-            <td>{{ match.awayTeam }} ({{ match.awayTeamStanding }})</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {% endfor %}
-</div> -->
+    function filterCompetitions() {
+        findCompetitions(document, "{{ filter | safe | escape }}");
+    }
+</script>
 
 {% endautoescape %}
 {% endblock content %}

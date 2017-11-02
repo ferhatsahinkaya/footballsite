@@ -6,19 +6,22 @@ def ws_connect(message):
 #    prefix, label = message['path'].strip('/').split('/')
 #    Group('league-' + label).add(message.reply_channel)
 #    message.channel_session['result'] = 'league-' + label
-     Group('result').add(message.reply_channel)
-     message.channel_session['result'] = 'test'
+     message.reply_channel.send({"accept": True})
+     Group('competitions').add(message.reply_channel)
 
 @channel_session
 def ws_receive(message):
-    label = message.channel_session['result']
-    Group('result').send({'key': 'value'})
+    # raise ValueError('ws_receive: ' + message)
+    # label = message.channel_session['result']
+    Group('competitions').send({
+        'text': 'message from server'
+    })
     #publish_competitions(message)
 
 @channel_session
 def ws_disconnect(message):
 #    label = message.channel_session['result']
-    Group('result').discard(message.reply_channel)
+    Group('competitions').discard(message.reply_channel)
 
 
 def publish_competitions(message):

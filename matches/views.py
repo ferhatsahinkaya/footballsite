@@ -22,7 +22,10 @@ def index(request):
 
 
 def get_competitions(request):
-    return render(request, 'matches/competitions.html', {'competitions': []})
+    return render(request, 'matches/competitions.html', {'filter' :
+                                                             {'type': 'topbottom',
+                                                              'percent': 100,
+                                                              'league': 'PL'}})
 
 def find_competitions(request):
     filter_type = request.GET['filtertype']
