@@ -1,42 +1,41 @@
+import json
+import time
 from channels import Group
 from channels.sessions import channel_session
+from matchfinder.filter import filtermatch
+from matchfinder.footballapi import footballapi
+
+competitions = footballapi.get_competitions()
 
 @channel_session
 def ws_connect(message):
-#    prefix, label = message['path'].strip('/').split('/')
-#    Group('league-' + label).add(message.reply_channel)
-#    message.channel_session['result'] = 'league-' + label
-     message.reply_channel.send({"accept": True})
-     Group('competitions').add(message.reply_channel)
+	message.reply_channel.send({"accept": True})
+	Group('competitions').add(message.reply_channel)
 
 @channel_session
 def ws_receive(message):
-    # raise ValueError('ws_receive: ' + message)
-    # label = message.channel_session['result']
-    Group('competitions').send({
-        'text': 'message from server'
-    })
-    #publish_competitions(message)
+	publish_competitions(json.loads(message['text']))
 
 @channel_session
 def ws_disconnect(message):
-#    label = message.channel_session['result']
-    Group('competitions').discard(message.reply_channel)
+	Group('competitions').discard(message.reply_channel)
 
 
-def publish_competitions(message):
-    filter_type = message['filtertype']
-    if filter_type == 'topbottom':
-        filter = {'type': filter_type, 'percent': int(message['percent'])}
-    else:
-        filter = {'type': filter_type, 'percent': int(message['percent']),
-                  'numberofgoals': int(message['numberofgoals']),
-                  'homeaway': 'homeaway' in message and message['homeaway'] == 'on',
-                  'halftime': message['halffulltime'] == 'halftime'}
+def publish_competition(competition, query):
+	c = filtermatch.get_matches(competition, query)
+	Group('competitions').send({'text': json.dumps({
+		'name': c.name,
+		'matches': [{
+			'datetime' : match.datetime,
+			'homeTeam' : match.homeTeam,
+			'homeTeamStanding' : match.homeTeamStanding,
+			'awayTeam' : match.awayTeam,
+			'awayTeamStanding' : match.awayTeamStanding		
+		} for match in c.matches] })
+	}, immediately=True)
 
-    selected_competitions = [competition for competition in competitions if
-                             competition['league'] in message['league']] \
-        if message['league'] != 'All' else competitions
+def publish_competitions(query):
+	selected_competitions = [competition for competition in competitions if competition['league'] == query['league']] \
+		if query['league'] != 'All' else competitions
 
-    map(lambda competition : Group('league-'+competition['id']).send({'competition': filtermatch.get_matches(competition, filter)}), selected_competitions)    
-
+	list(map(lambda competition: publish_competition(competition, query), selected_competitions))

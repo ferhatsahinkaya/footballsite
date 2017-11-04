@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="static/css/skeleton.css">
 
 <br>
-<div class="container">
+<div id="competitions" class="container">
     <script type="text/javascript" src="{% static 'js/reconnecting-websocket.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/competitions.js' %}"></script>
@@ -17,7 +17,7 @@
     filterCompetitions();
 
     function filterCompetitions() {
-        findCompetitions(document, "{{ filter | safe | escape }}");
+        findCompetitions(document, "{{ filter | safe | escape }}".replace(/'/g, '\"'));
     }
 </script>
 
