@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "97ca6273754a9299f43b58ad09142681fad0f1f4f4554b3600610e1964e24181"
+            "sha256": "32e9a66da00cf8da551bbbc7e310299e614979f833d3663baeef6dbb8e14cc03"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -279,7 +279,7 @@
         "matchfinder": {
             "editable": true,
             "git": "https://github.com/ferhatsahinkaya/matchfinder.git",
-            "ref": "59f89c05d1a59229eed47d8ee7d299536d2a0329"
+            "ref": "52be02720d7a7cc911fdd5597402dde819fe68e1"
         },
         "mccabe": {
             "hashes": [
