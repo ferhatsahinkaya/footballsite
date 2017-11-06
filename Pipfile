@@ -14,7 +14,7 @@ certifi = "==2017.7.27.1"
 chardet = "==3.0.4"
 "flake8" = "==3.4.1"
 idna = "==2.6"
-matchfinder = {ref = "52be02720d7a7cc911fdd5597402dde819fe68e1", editable = true, git = "https://github.com/ferhatsahinkaya/matchfinder.git"}
+matchfinder = {ref = "52be02720d7a7cc911fdd5597402dde819fe68e1", git = "https://github.com/ferhatsahinkaya/matchfinder.git", editable = true}
 mccabe = "==0.6.1"
 pew = "==1.1.0"
 pipenv = "==8.2.7"
