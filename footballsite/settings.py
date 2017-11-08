@@ -25,7 +25,7 @@ SECRET_KEY = 'qei6wtw&vuobloq9)wu%24$d2vavnbw(mvocgqxlv5#yvnhcg='
 DEBUG = False
 
 ALLOWED_HOSTS = ['localhost',
-                 'pacific-fjord-80529.herokuapp.com']
+                 'footballsite.herokuapp.com']
 
 # Application definition
 
