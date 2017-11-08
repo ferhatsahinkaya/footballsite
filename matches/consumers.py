@@ -1,35 +1,43 @@
 import json
-import time
+import uuid
+import logging
 from channels import Group
 from channels.sessions import channel_session
 from matchfinder.filter import filtermatch
 from matchfinder.footballapi import footballapi
 
 competitions = footballapi.get_competitions()
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 @channel_session
 def ws_connect(message):
+	sessionId = str(uuid.uuid4())
+	logger.info('connect sessionId: ' + sessionId)
 	message.reply_channel.send({"accept": True})
-	Group('competitions').add(message.reply_channel)
+	Group('competitions-' + sessionId).add(message.reply_channel)
+	message.channel_session['sessionId'] = sessionId
 
 @channel_session
-def ws_receive(message):
-	publish_competitions(json.loads(message['text']))
+def ws_receive(message):	
+	logger.info('receive message for sessionId: ' + message.channel_session['sessionId'])
+	publish_competitions(message.channel_session['sessionId'], json.loads(message['text']))
 
 @channel_session
 def ws_disconnect(message):
-	Group('competitions').discard(message.reply_channel)
+	sessionId = message.channel_session['sessionId']
+	logger.info('disconnect sessionId: ' + sessionId)
+	Group('competitions-' + sessionId).discard(message.reply_channel)
 
-
-def publish_competition(competition, query):
+def publish_competition(sessionId, competition, query):
 	c = filtermatch.get_matches(competition, query)
-	Group('competitions').send({'text': json.dumps({
+	Group('competitions-' + sessionId).send({'text': json.dumps({
 		'name': c.name,
 		'matches': [match.__dict__ for match in c.matches] })
 	}, immediately=True)
 
-def publish_competitions(query):
+def publish_competitions(sessionId, query):
 	selected_competitions = [competition for competition in competitions if competition['league'] == query['league']] \
 		if query['league'] != 'All' else competitions
 
-	list(map(lambda competition: publish_competition(competition, query), selected_competitions))
+	list(map(lambda competition: publish_competition(sessionId, competition, query), selected_competitions))
