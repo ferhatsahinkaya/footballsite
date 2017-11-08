@@ -1,20 +1,20 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "32e9a66da00cf8da551bbbc7e310299e614979f833d3663baeef6dbb8e14cc03"
+            "sha256": "329039fba0865a26ba7accbf56593def069dcfdc3413bdfbb3dc7f33878a6ffd"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
-            "implementation_version": "3.6.3",
+            "implementation_version": "3.6.1",
             "os_name": "posix",
             "platform_machine": "x86_64",
             "platform_python_implementation": "CPython",
-            "platform_release": "4.10.0-38-generic",
-            "platform_system": "Linux",
-            "platform_version": "#42~16.04.1-Ubuntu SMP Tue Oct 10 16:32:20 UTC 2017",
-            "python_full_version": "3.6.3",
+            "platform_release": "16.7.0",
+            "platform_system": "Darwin",
+            "platform_version": "Darwin Kernel Version 16.7.0: Thu Jun 15 17:36:27 PDT 2017; root:xnu-3789.70.16~2/RELEASE_X86_64",
+            "python_full_version": "3.6.1",
             "python_version": "3.6",
-            "sys_platform": "linux"
+            "sys_platform": "darwin"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -279,7 +279,7 @@
         "matchfinder": {
             "editable": true,
             "git": "https://github.com/ferhatsahinkaya/matchfinder.git",
-            "ref": "52be02720d7a7cc911fdd5597402dde819fe68e1"
+            "ref": "90549b1eef02aea0a94a6dbd9d02b90c83348837"
         },
         "mccabe": {
             "hashes": [
