@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "dd64187bca26b3b3d9c7c4f5cc50768ac9298f27abf47b8adfabf5dd6c379d13"
+            "sha256": "0dfbc920aa85530940ce80add8bf5c4f09765a26c8886d9051e1eb0644311085"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -27,6 +27,10 @@
         ]
     },
     "default": {
+        "56b9596": {
+            "editable": true,
+            "path": "../matchfinder/"
+        },
         "asgi-redis": {
             "hashes": [
                 "sha256:ad724d382617b34c2cae08a8c43eb9999f7e695c11e9c534d28b7db0042b898e",
@@ -277,7 +281,7 @@
         "matchfinder": {
             "editable": true,
             "git": "https://github.com/ferhatsahinkaya/matchfinder.git",
-            "ref": "90549b1eef02aea0a94a6dbd9d02b90c83348837"
+            "ref": "52be02720d7a7cc911fdd5597402dde819fe68e1"
         },
         "mccabe": {
             "hashes": [

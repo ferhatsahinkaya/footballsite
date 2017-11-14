@@ -54,6 +54,7 @@ virtualenv-clone = "==0.2.6"
 werkzeug = "==0.12.2"
 whitenoise = "==3.3.1"
 "zope.interface" = "==4.4.3"
+"56b9596" = {path = "../matchfinder/", editable = true}
 
 
 [dev-packages]

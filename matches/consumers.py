@@ -33,7 +33,11 @@ def publish_competition(sessionId, competition, query):
 	c = filtermatch.get_matches(competition, query)
 	Group('competitions-' + sessionId).send({'text': json.dumps({
 		'name': c.name,
-		'matches': [match.__dict__ for match in c.matches] })
+		'matches': [{
+			'datetime': match.datetime,
+			'homeTeam': match.homeTeam.__dict__,
+			'awayTeam': match.awayTeam.__dict__
+		} for match in c.matches] })
 	}, immediately=True)
 
 def publish_competitions(sessionId, query):

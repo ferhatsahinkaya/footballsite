@@ -32,11 +32,13 @@ Populator.prototype.populate = function(competition) {
 
 Populator.prototype.topBottom = function(competition) {
     var html = '<h3>' + competition.name + '</h3>' +
-        '<table class=\"u-full-width\">' +
+        '<table class="u-full-width">' +
 	'<thead>' +
 	'<tr>' +
 	'<th>Time</th>' +
+	'<th/>' +
 	'<th>Home Team</th>' +
+	'<th/>' +
 	'<th>Away Team</th>' +
 	'</tr>' +
 	'</thead>' +
@@ -44,8 +46,10 @@ Populator.prototype.topBottom = function(competition) {
     $.each(competition.matches, function(index, value) { 
 	html += '<tr>' +
 		'<td>' + value.datetime + '</td>' +
-		'<td>' + value.homeTeam + '(' + value.homeTeamStanding + ')</td>' +
-		'<td>' + value.awayTeam + '(' + value.awayTeamStanding + ')</td>' +
+		'<td><img class="u-max-full-width" src=\"' + value.homeTeam.crestUrl + '\"/></td>' +
+		'<td>' + value.homeTeam.name + '(' + value.homeTeam.standing + ')</td>' +
+		'<td><img class="u-max-full-width" src=\"' + value.awayTeam.crestUrl + '\"/></td>' +
+		'<td>' + value.awayTeam.name + '(' + value.awayTeam.standing + ')</td>' +
                 '</tr>'
     });
     html += '</tbody></table>';
