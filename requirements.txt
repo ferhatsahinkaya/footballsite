@@ -27,7 +27,7 @@ incremental==17.5.0
 itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
--e git+https://github.com/ferhatsahinkaya/matchfinder.git@90549b1eef02aea0a94a6dbd9d02b90c83348837#egg=matchfinder
+-e git+https://github.com/ferhatsahinkaya/matchfinder.git@06a1aed509bd56f7e15d75de1dfa679f32ebdb07#egg=matchfinder
 mccabe==0.6.1
 msgpack-python==0.4.8
 pew==1.1.0
