@@ -356,9 +356,12 @@ ol,
 form {
   margin-bottom: 2.5rem; }
 
-
 /* Utilities
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.resize {
+  width: 40px;
+  height: 40px;
+}
 .u-full-width {
   width: 100%;
   box-sizing: border-box; }
