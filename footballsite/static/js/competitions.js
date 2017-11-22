@@ -46,7 +46,7 @@ ResultPopulators.prototype.topBottom = function (competition) {
 
     $.each(competition.matches, function (index, value) {
         html += '<tr>' +
-            '<td>' + value.datetime + '</td>' +
+            '<td>' + new Date(value.datetime).toUTCString() + '</td>' +
             getTeamHtml(value.homeTeam) +
             getTeamHtml(value.awayTeam);
     });
@@ -77,7 +77,7 @@ ResultPopulators.prototype.underOver = function (competition) {
 
     $.each(competition.matches, function (index, value) {
         html += '<tr>' +
-            '<td>' + value.datetime + '</td>' +
+            '<td>' + new Date(value.datetime).toUTCString() + '</td>' +
             getTeamHtml(value.homeTeam) +
             getTeamHtml(value.awayTeam) +
             '<td>' + value.stats.under_or_equal_chance + '</td>' +

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-import json
 from matchfinder.filter import filtermatch
 from matchfinder.footballapi import footballapi
 
@@ -25,6 +24,7 @@ def index(request):
 def get_competitions(request):
     return render(request, 'matches/competitions.html', get_filter(request))
 
+
 def find_competitions(request):
     selected_competitions = [competition for competition in competitions if
                              competition['league'] in request.GET['league']] \
@@ -35,17 +35,19 @@ def find_competitions(request):
 
     return render(request, 'matches/' + pages[filter_type], context)
 
+
 def get_filter(request):
     filter_type = request.GET['filtertype']
     if filter_type == 'topbottom':
-        filter = {'type': filter_type, 
-                  'percent': int(request.GET['percent']), 
-                  'league': request.GET['league']}
+        filter = {'type': filter_type,
+                  'percent': int(request.GET['percent']),
+                  'league': request.GET['league'],
+                  'teamcrest': request.GET['teamcrest'] if 'teamcrest' in request.GET else 'off'}
     else:
         filter = {'type': filter_type, 'percent': int(request.GET['percent']),
                   'numberofgoals': int(request.GET['numberofgoals']),
                   'homeaway': request.GET['homeaway'] if 'homeaway' in request.GET else 'off',
                   'halffulltime': request.GET['halffulltime'],
-                  'league': request.GET['league']}
-    return {'filter' : filter}
-
+                  'league': request.GET['league'],
+                  'teamcrest': request.GET['teamcrest'] if 'teamcrest' in request.GET else 'off'}
+    return {'filter': filter}
