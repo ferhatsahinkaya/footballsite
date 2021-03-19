@@ -34,7 +34,7 @@ hyperlink = "==17.3.1"
 idna = "==2.6"
 incremental = "==17.5.0"
 itsdangerous = "==0.24"
-"jinja2" = "==2.9.6"
+"jinja2" = "==2.11.3"
 markupsafe = "==1.0"
 matchfinder = {git = "https://github.com/ferhatsahinkaya/matchfinder.git", editable = true, ref = "6e9e2706c18e340986191d73de06cb98fd056c22"}
 mccabe = "==0.6.1"
